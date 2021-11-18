@@ -21,8 +21,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Roboto', 'sans-serif'],
+        sans: ['PressStart2P', 'sans-serif'],
         serif: ['Antwerp', 'serif'],
+        roboto: ['Roboto', 'roboto'],
       },
     },
   },

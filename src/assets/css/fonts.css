@@ -70,3 +70,9 @@
   font-weight: 900;
   src: url('../fonts/apercu/apercu-black-pro.otf') format('opentype');
 }
+
+@font-face {
+  font-family: 'PressStart2P';
+  font-weight: 400;
+  src: url('../fonts/press_start_2p/PressStart2P-Regular.ttf') format('truetype');
+}
