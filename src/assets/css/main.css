@@ -1,0 +1,12 @@
+@import './fonts.css';
+@import './tailwind.css';
+
+* {
+  body {
+    background-color: #fafafa;
+  }
+
+  .container {
+    margin: auto;
+  }
+}
