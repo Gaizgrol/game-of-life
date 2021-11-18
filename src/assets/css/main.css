@@ -1,12 +1,29 @@
+/* stylelint-disable */
 @import './fonts.css';
 @import './tailwind.css';
 
 * {
-  body {
-    background-color: #fafafa;
-  }
-
   .container {
     margin: auto;
+  }
+
+  .arcade-button {
+    @apply text-white rounded-sm p-3 border-black border-2;
+
+    &--black {
+      @apply bg-black
+    }
+
+    &--green {
+      @apply bg-green-600
+    }
+
+    &:active{
+      @apply bg-white text-black
+    }
+
+    &:hover{
+      @apply border-2 border-white
+    }
   }
 }
