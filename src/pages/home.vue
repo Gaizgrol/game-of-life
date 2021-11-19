@@ -28,8 +28,10 @@
         v-else-if="isScreenPlaying"
         :width="width"
         :height="height"
-        :grid="grid"
+        :grid="grade.getCelulas()"
         @onGoBack="onGoBackFromPlayingScreen"
+        @onSpeedDown="speedDown"
+        @onSpeedUp="speedUp"
       />
     </div>
   </div>
@@ -41,6 +43,7 @@ import GameScreenStart from '@/components/gamescreen/start.vue'
 import GameScreenInputs from '@/components/gamescreen/inputs.vue'
 import GameScreenPosition from '@/components/gamescreen/position.vue'
 import GameScreenPlaying from '@/components/gamescreen/playing.vue'
+import Grade from '@/helpers/Grade'
 
 export default {
   components: {
@@ -55,7 +58,9 @@ export default {
       currentScreen: 'start',
       width: null,
       height: null,
-      grid: [],
+      grade: [],
+      renderInterval: 500,
+      interval: null,
       bkgColor: '#2e2e2e',
     }
   },
@@ -88,13 +93,36 @@ export default {
       this.currentScreen = 'start'
     },
     onPlay(grid) {
-      this.grid = grid
+      this.renderInterval = 500
+      this.grade = new Grade(this.width, this.height)
+      for (let i = 0; i < grid.length; i++)
+        if (grid[i] === true)
+          this.grade.ativa(i % this.width, parseInt(i / this.width))
+
+      this.createInterval()
+
       this.bkgColor = '#000000'
       this.currentScreen = 'playing'
     },
     onGoBackFromPlayingScreen() {
-      this.bkgColor = '#2e2e2e'
-      this.currentScreen = 'start'
+      clearInterval(this.interval)
+      this.currentScreen = 'position'
+    },
+    render() {
+      this.grade.atualiza()
+    },
+    createInterval() {
+      clearInterval(this.interval)
+      this.interval = setInterval(this.render, this.renderInterval)
+    },
+    speedDown() {
+      this.renderInterval += 100
+      this.createInterval()
+    },
+    speedUp() {
+      this.renderInterval -= 100
+      if (this.renderInterval < 100) this.renderInterval = 100
+      this.createInterval()
     },
   },
 }
