@@ -13,7 +13,7 @@
 
         <button
           class="arcade-button arcade-button--green"
-          @click="$emit('onGridSelected', { width, height })"
+          @click="onGridSelected"
         >
           Próximo
         </button>
@@ -29,6 +29,13 @@ export default {
       width: 42,
       height: 42,
     }
+  },
+  methods: {
+    onGridSelected() {
+      if (this.width > 150) this.width = 150
+      if (this.height > 150) this.height = 150
+      this.$emit('onGridSelected', { width: this.width, height: this.height })
+    },
   },
 }
 </script>

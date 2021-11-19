@@ -169,4 +169,8 @@ export default class Grade {
 
     return v
   }
+
+  getCelulas() {
+    return this.celulas
+  }
 }

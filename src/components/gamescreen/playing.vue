@@ -3,12 +3,38 @@
     <div class="flex flex-col items-center justify-center">
       <h3 class="font-arcade text-white pt-3 invisible">.</h3>
       <div class="flex items-center justify-center mb-4">
+        <q-icon
+          name="mdi-skip-backward"
+          size="md"
+          color="white"
+          class="
+            cursor-pointer
+            p-1
+            rounded-sm
+            border-2 border-transparent
+            hover:border-white
+          "
+          @click="$emit('onSpeedDown')"
+        />
         <button
-          class="arcade-button arcade-button--black"
+          class="arcade-button arcade-button--black mx-5"
           @click="$emit('onGoBack')"
         >
           Encerrar
         </button>
+        <q-icon
+          name="mdi-skip-forward"
+          size="md"
+          color="white"
+          class="
+            cursor-pointer
+            p-1
+            rounded-sm
+            border-2 border-transparent
+            hover:border-white
+          "
+          @click="$emit('onSpeedUp')"
+        />
       </div>
     </div>
     <div class="flex items-center justify-center">

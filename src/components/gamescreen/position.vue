@@ -11,10 +11,7 @@
         >
           Voltar
         </button>
-        <button
-          class="arcade-button arcade-button--green ml-3"
-          @click="$emit('onPlay', grid)"
-        >
+        <button class="arcade-button arcade-button--green ml-3" @click="onPlay">
           Iniciar
         </button>
         <button
@@ -72,6 +69,9 @@ export default {
         gridTemplateColumns: `repeat(${this.width}, minmax(0, 1fr))`,
       }
     },
+    hasSelectedCells() {
+      return this.grid.some((x) => x)
+    },
   },
   mounted() {
     this.makeGrid()
@@ -89,6 +89,12 @@ export default {
     },
     resetGrid() {
       this.makeGrid()
+    },
+    onPlay() {
+      if (!this.hasSelectedCells)
+        for (let i = 0; i < this.grid.length; i++)
+          this.grid[i] = Math.random() < 0.5
+      this.$emit('onPlay', this.grid)
     },
   },
 }
